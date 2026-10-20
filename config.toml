@@ -17,7 +17,13 @@ version = "21.20.405"
 arch = "arm64-v8a"
 
 # Builder downloads the stock APK itself from here. No manual download needed.
-apkmirror-dlurl = "https://www.apkmirror.com/apk/google-inc/youtube"
+#
+# Source is the j-hc archive.org mirror, NOT APKMirror: APKMirror returns 403
+# to GitHub Actions IPs (bot protection), which killed the first build attempt.
+# dl_archive falls back from <ver>-<arch> to <ver>-all, which is what the
+# mirror actually carries. dl_direct has no such fallback and would reject
+# the -all filename against arch = "arm64-v8a".
+archive-dlurl = "https://archive.org/download/jhc-apks/apks/com.google.android.youtube"
 
 enable-update-checks = true
 
